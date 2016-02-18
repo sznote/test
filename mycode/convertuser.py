@@ -3,7 +3,7 @@
 import sys
 import string
 import hashlib
-
+#
 import re
 class convuser():
     def readfile(self, file):

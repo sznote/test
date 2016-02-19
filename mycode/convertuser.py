@@ -3,9 +3,12 @@
 import sys
 import string
 import hashlib
-
+import getopt
+import os
 import re
+
 class convuser():
+
     def readfile(self, file):
         self.file = file
         self.thash = {}
@@ -60,9 +63,38 @@ class convuser():
         f.write("</user-mapping>\n")
         f.closed
 
+def main(argv):
+    infile  = ''
+    outfile = ''
+
+    try:
+        opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+    except getopt.GetoptError:
+        print 'convertuser.py -i <inputfile> -o <outputfile>'
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt == '-h':
+            print 'convertuser.py -i <inputfile> -o <outputfile>'
+            sys.exit()
+        elif opt in ("-i", "--ifile"):
+            infile = arg
+        elif opt in ("-o", "--ofile"):
+            outfile = arg
+
+    if not os.path.isfile(infile):
+        print 'convertuser.py -i <inputfile> -o <outputfile>'
+        sys.exit(2)
+
+    a = convuser()
+    a.readfile(infile)
+    #a.showthash()
+    a.writefile(outfile)
+
+    #a.readfile('./listIpmi')
+    #a.showthash()
+    #a.writefile('./user-mapping.xml')
+
 
 if __name__ == "__main__":
-    a = convuser()
-    a.readfile('./listIpmi')
-    #a.showthash()
-    a.writefile('./user-mapping.xml')
+     main(sys.argv[1:])

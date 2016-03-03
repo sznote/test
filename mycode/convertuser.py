@@ -9,6 +9,8 @@ import re
 
 class convuser():
 
+    ipmiweb = "110.34.250.100"
+
     def readfile(self, file):
         self.file = file
         self.thash = {}
@@ -52,7 +54,7 @@ class convuser():
             f.write("encoding=\"md5\">\n")
             f.write("\t\t<connection name=\"%s\">\n" %(cn))
             f.write("\t\t\t<protocol>rdp</protocol>\n")
-            f.write("\t\t\t<param name=\"hostname\">110.34.250.200</param>\n")
+            f.write("\t\t\t<param name=\"hostname\">%s</param>\n" %(self.ipmiweb))
             f.write("\t\t\t<param name=\"username\">%s</param>\n" %(cn))
             #f.write("\t\t\t<param name=\"password\">%s</param>\n" %(self.thash[cn][-8:]))
             f.write("\t\t\t<param name=\"password\">%s</param>\n" %(self.thash[cn][0:12]))

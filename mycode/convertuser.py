@@ -77,7 +77,7 @@ def main(argv):
 
     for opt, arg in opts:
         if opt == '-h':
-            print 'convertuser.py -i <inputfile> -o <outputfile>'
+            print 'convertuser.py -i <inputfile> -o <outputfile> |{-d}'
             sys.exit()
         elif opt in ("-i", "--ifile"):
             infile = arg
@@ -85,12 +85,12 @@ def main(argv):
             outfile = arg
 
     if not os.path.isfile(infile):
-        print 'convertuser.py -i <inputfile> -o <outputfile>'
+        print 'convertuser.py -i <inputfile> -o <outputfile> | {-d}'
         sys.exit(2)
 
     a = convuser()
     a.readfile(infile)
-    #a.showthash()
+    a.showthash()
     a.writefile(outfile)
 
     #a.readfile('./listIpmi')

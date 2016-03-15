@@ -66,31 +66,37 @@ class convuser():
         f.closed
 
 def main(argv):
-    infile  = ''
+
+    infile = ''
     outfile = ''
+    hdebug = ''
 
     try:
-        opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+        opts, args = getopt.getopt(argv,"hi:o:d",["ifile=","ofile="])
     except getopt.GetoptError:
-        print 'convertuser.py -i <inputfile> -o <outputfile>'
+        print 'convertuser.py -i <inputfile> -o <outputfile> -d <0|1>'
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
-            print 'convertuser.py -i <inputfile> -o <outputfile> |{-d}'
+            print 'convertuser.py -i <inputfile> -o <outputfile> -d <0|1>'
             sys.exit()
         elif opt in ("-i", "--ifile"):
             infile = arg
         elif opt in ("-o", "--ofile"):
             outfile = arg
+        elif opt in "-d":
+            hdebug = "debug"
 
     if not os.path.isfile(infile):
-        print 'convertuser.py -i <inputfile> -o <outputfile> | {-d}'
+        print 'convertuser.py -i <inputfile> -o <outputfile> -d <0|1>'
         sys.exit(2)
 
     a = convuser()
     a.readfile(infile)
-    a.showthash()
+
+    if hdebug is "debug":
+        a.showthash()
     a.writefile(outfile)
 
     #a.readfile('./listIpmi')

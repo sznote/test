@@ -42,7 +42,7 @@ class convuser():
             print  "%s <> %s" %( x,self.thash[x])
             print  "xrd pass is: %s" %(self.thash[x][0:12])
             print  "web pass is: %s" %(self.thash[x][-8:])
-
+            print  "https://ipmi.vpls.net/ipmi/#/api/tokens/?username=%s&password=%s" % ( x, self.thash[x][-8:] )
     def writefile(self, file):
         f =  open(file,'w')
         f.write("<user-mapping>\n")

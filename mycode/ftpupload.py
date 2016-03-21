@@ -4,7 +4,8 @@ import urllib2
 import ftplib
 import os
 
-server = '110.34.250.200'
+#server = '74.222.139.154'
+server = 'xrdp.vpls.net'
 username = 'dbipmi'
 userpass = 'HXsY0KnB1'
 file = 'listIpmi'
